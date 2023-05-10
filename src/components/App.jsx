@@ -60,9 +60,6 @@ export const App = () => {
       contact.name.toLowerCase().includes(lowerFilter)
     );
   };
-  const onDeleteContact = id => {
-    setContacts(contacts.filter(contact => contact.id !== id));
-  };
 
   const visibleContacts = filterContacts();
 
