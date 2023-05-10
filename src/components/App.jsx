@@ -1,5 +1,5 @@
-import { React, useState, useEffect } from 'react';
-import { nanoid } from 'nanoid';
+import { React, useState } from 'react';
+// import { nanoid } from 'nanoid';
 import Modal from 'components/Modal';
 import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
@@ -26,42 +26,26 @@ if (!localContacts) {
 }
 
 export const App = () => {
-  const [contacts, setContacts] = useState(localContacts);
-  const [filter, setFilter] = useState('');
+  const [contacts] = useState(localContacts);
+  // const [filter, setFilter] = useState('');
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {
     setShowModal(!showModal);
   };
 
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+  // const handleChange = e => {
+  //   setFilter(e.currentTarget.value);
+  // };
 
-  const addContact = ({ name, number }) => {
-    const isNameExists = contacts.some(
-      contact => contact.name?.toLowerCase() === name.toLowerCase()
-    );
+  // const filterContacts = () => {
+  //   const lowerFilter = filter.toLowerCase();
+  //   return contacts.filter(contact =>
+  //     contact.name.toLowerCase().includes(lowerFilter)
+  //   );
+  // };
 
-    if (isNameExists) {
-      return alert(`${name} is already in contacts`);
-    }
-    setContacts([...contacts, { id: nanoid(), name, number }]);
-    toggleModal();
-  };
-
-  const handleChange = e => {
-    setFilter(e.currentTarget.value);
-  };
-
-  const filterContacts = () => {
-    const lowerFilter = filter.toLowerCase();
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(lowerFilter)
-    );
-  };
-
-  const visibleContacts = filterContacts();
+  // const visibleContacts = filterContacts();
 
   return (
     <Book>
@@ -76,7 +60,7 @@ export const App = () => {
               <CloseButton type="button" onClick={toggleModal}>
                 Close
               </CloseButton>
-              <ContactForm onSubmit={addContact} />
+              <ContactForm />
             </ModalItems>
           </ModalBlock>
         </Modal>
@@ -85,7 +69,7 @@ export const App = () => {
       {contacts.length > 0 && (
         <>
           <h2>Contacts</h2>
-          <Filter value={filter} onChange={handleChange} />
+          <Filter />
         </>
       )}
       <ContactList />

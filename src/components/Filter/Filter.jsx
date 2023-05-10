@@ -1,13 +1,15 @@
 import { React, useState } from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { setStatusFilter } from 'redux/filtersSlice';
 import { Find } from './Filter.styled';
 
-const Filter = ({ onChange }) => {
+const Filter = () => {
   const [filter, setFilter] = useState('');
-
+  const dispatch = useDispatch();
   const handleChange = e => {
-    setFilter(e.currentTarget.value);
-    onChange(e);
+    const val = e.currentTarget.value;
+    setFilter(val);
+    dispatch(setStatusFilter(val));
   };
 
   return (
@@ -19,8 +21,3 @@ const Filter = ({ onChange }) => {
 };
 
 export default Filter;
-
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-};

@@ -11,7 +11,6 @@ export const ContactList = () => {
   // const statusFilter = useSelector(getStatusFilter);
   const dispatch = useDispatch();
   const handleDelete = function (id) {
-    // console.log(id);
     dispatch(deleteContact(id));
   };
   return (
