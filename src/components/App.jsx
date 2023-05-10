@@ -91,10 +91,7 @@ export const App = () => {
           <Filter value={filter} onChange={handleChange} />
         </>
       )}
-      <ContactList
-        contacts={visibleContacts}
-        onDeleteContact={onDeleteContact}
-      />
+      <ContactList />
     </Book>
   );
 };
