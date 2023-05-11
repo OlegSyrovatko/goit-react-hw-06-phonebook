@@ -1,5 +1,4 @@
 import { React, useState } from 'react';
-// import { nanoid } from 'nanoid';
 import Modal from 'components/Modal';
 import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';

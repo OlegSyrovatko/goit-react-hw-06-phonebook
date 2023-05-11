@@ -1,5 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
+// import { useDispatch } from 'react-redux';
+// import { setStatusModal } from 'redux/filtersModal';
 import { Backdrop, ModalContent } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
@@ -13,6 +15,8 @@ const Modal = ({ onClose, children }) => {
     },
     [onClose]
   );
+  // const dispatch = useDispatch();
+  // dispatch(setStatusModal(val));
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
