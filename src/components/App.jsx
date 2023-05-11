@@ -1,7 +1,8 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setStatusModal } from 'redux/modalSlice';
 import { getModal } from 'redux/selectors';
+
 import Modal from 'components/Modal';
 import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
