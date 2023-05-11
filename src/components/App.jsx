@@ -27,25 +27,12 @@ if (!localContacts) {
 
 export const App = () => {
   const [contacts] = useState(localContacts);
-  // const [filter, setFilter] = useState('');
+
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {
     setShowModal(!showModal);
   };
-
-  // const handleChange = e => {
-  //   setFilter(e.currentTarget.value);
-  // };
-
-  // const filterContacts = () => {
-  //   const lowerFilter = filter.toLowerCase();
-  //   return contacts.filter(contact =>
-  //     contact.name.toLowerCase().includes(lowerFilter)
-  //   );
-  // };
-
-  // const visibleContacts = filterContacts();
 
   return (
     <Book>
