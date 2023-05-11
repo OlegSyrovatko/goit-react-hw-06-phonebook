@@ -1,4 +1,7 @@
 import { React, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setStatusModal } from 'redux/modalSlice';
+import { getModal } from 'redux/selectors';
 import Modal from 'components/Modal';
 import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
@@ -27,10 +30,10 @@ if (!localContacts) {
 export const App = () => {
   const [contacts] = useState(localContacts);
 
-  const [showModal, setShowModal] = useState(false);
-
+  const showModal = useSelector(getModal);
+  const dispatch = useDispatch();
   const toggleModal = () => {
-    setShowModal(!showModal);
+    dispatch(setStatusModal(!showModal));
   };
 
   return (
@@ -40,7 +43,7 @@ export const App = () => {
         Add Contact
       </Button>
       {showModal && (
-        <Modal onClose={toggleModal}>
+        <Modal>
           <ModalBlock>
             <ModalItems>
               <CloseButton type="button" onClick={toggleModal}>

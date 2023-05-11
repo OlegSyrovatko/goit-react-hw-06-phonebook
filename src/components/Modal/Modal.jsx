@@ -1,35 +1,34 @@
-import React, { useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-// import { useDispatch } from 'react-redux';
-// import { setStatusModal } from 'redux/filtersModal';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setStatusModal } from 'redux/modalSlice';
+
 import { Backdrop, ModalContent } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
-const Modal = ({ onClose, children }) => {
-  const handleKeyDown = useCallback(
-    e => {
-      if (e.code === 'Escape') {
-        onClose();
-      }
-    },
-    [onClose]
-  );
-  // const dispatch = useDispatch();
-  // dispatch(setStatusModal(val));
+const Modal = ({ children }) => {
+  const dispatch = useDispatch();
+
+  const handleBackdropClick = event => {
+    if (event.currentTarget === event.target) {
+      dispatch(setStatusModal(false));
+    }
+  };
+
+  const handleKeyDown = event => {
+    if (event.code === 'Escape') {
+      dispatch(setStatusModal(false));
+    }
+  };
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [handleKeyDown]);
-
-  const handleBackdropClick = event => {
-    if (event.currentTarget === event.target) {
-      onClose();
-    }
-  };
+    // eslint-disable-next-line
+  }, []);
 
   return createPortal(
     <Backdrop onClick={handleBackdropClick}>

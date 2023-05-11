@@ -1,5 +1,6 @@
 import { React, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { setStatusModal } from 'redux/modalSlice';
 import { getContacts } from 'redux/selectors';
 import { addContact } from 'redux/contactsSlice';
 import { Button, Form, Label } from './ContactForm.styled';
@@ -31,6 +32,7 @@ const ContactForm = () => {
     dispatch(addContact(name, number));
     setName('');
     setNumber('');
+    dispatch(setStatusModal(false));
   };
 
   return (
