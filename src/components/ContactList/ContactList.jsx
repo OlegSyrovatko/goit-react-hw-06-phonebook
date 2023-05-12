@@ -6,6 +6,7 @@ import { Ul, Li, P, Button } from './ContactList.styled';
 
 export const ContactList = () => {
   const contacts = useSelector(getContacts);
+
   const filter = useSelector(getFilter);
   const dispatch = useDispatch();
   const handleDelete = function (id) {
@@ -20,6 +21,7 @@ export const ContactList = () => {
   };
 
   const visibleContacts = filterContacts();
+
   return (
     <Ul>
       {visibleContacts.map(({ id, name, number }) => (
