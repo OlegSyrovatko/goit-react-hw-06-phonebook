@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { getContacts } from 'redux/selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import { setStatusModal } from 'redux/modalSlice';
 import { getModal } from 'redux/selectors';
@@ -15,28 +16,13 @@ import {
   ModalItems,
 } from './App.styled';
 
-let localContacts = localStorage.getItem('contacts');
-localContacts = JSON.parse(localContacts);
-
-if (!localContacts) {
-  localContacts = [
-    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-  ];
-  localStorage.setItem('contacts', JSON.stringify(localContacts));
-}
-
 export const App = () => {
-  const [contacts] = useState(localContacts);
-
   const showModal = useSelector(getModal);
   const dispatch = useDispatch();
   const toggleModal = () => {
     dispatch(setStatusModal(!showModal));
   };
-
+  const contacts = useSelector(getContacts);
   return (
     <Book>
       <h1>Phonebook</h1>
